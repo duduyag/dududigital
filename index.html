@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dudu Yagudayev — I Fix the Digital Side of Your Business</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --purple:     #6C3FC5;
+  --purple-mid: #8B5CF6;
+  --purple-deep:#1A0533;
+  --gold:       #F5A623;
+  --gold-light: #FFF0D0;
+  --bg:         #FDF9F4;
+  --card:       #FFFFFF;
+  --lavender:   #EDE8F8;
+  --text:       #1A0533;
+  --muted:      #6B6180;
+  --border:     #E8E0F5;
+  --display:    'Bricolage Grotesque', sans-serif;
+  --body:       'Inter', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ══ NAV ══ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 56px;
+  background: rgba(253,249,244,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  transition: box-shadow 0.3s;
+}
+nav.scrolled { box-shadow: 0 4px 32px rgba(108,63,197,0.1); }
+.nav-brand {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 20px;
+  color: var(--purple);
+  letter-spacing: -0.03em;
+}
+.nav-brand span { color: var(--gold); }
+.nav-pill {
+  background: var(--gold);
+  color: var(--purple-deep);
+  font-family: var(--body);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 24px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 4px 16px rgba(245,166,35,0.35);
+}
+.nav-pill:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245,166,35,0.45); }
+
+/* ══ HERO ══ */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 48px;
+  padding: 140px 56px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Soft blob background */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -20%; right: -10%;
+  width: 65vw; height: 65vw;
+  max-width: 900px; max-height: 900px;
+  background: radial-gradient(circle at 40% 40%,
+    rgba(139,92,246,0.18) 0%,
+    rgba(108,63,197,0.08) 45%,
+    transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: blobPulse 8s ease-in-out infinite;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -5%; left: -5%;
+  width: 40vw; height: 40vw;
+  max-width: 500px; max-height: 500px;
+  background: radial-gradient(circle,
+    rgba(245,166,35,0.12) 0%,
+    transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: blobPulse 10s ease-in-out infinite reverse;
+}
+@keyframes blobPulse {
+  0%, 100% { transform: scale(1) translate(0, 0); }
+  50% { transform: scale(1.06) translate(2%, 2%); }
+}
+
+.hero-text { position: relative; z-index: 2; }
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--lavender);
+  color: var(--purple);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 100px;
+  margin-bottom: 28px;
+  letter-spacing: 0.01em;
+}
+.badge-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--gold);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.85); }
+}
+
+.hero h1 {
+  font-family: var(--display);
+  font-size: clamp(38px, 4.5vw, 64px);
+  font-weight: 800;
+  line-height: 1.06;
+  letter-spacing: -0.04em;
+  margin-bottom: 24px;
+  color: var(--purple-deep);
+}
+.hero h1 .highlight {
+  position: relative;
+  display: inline-block;
+  color: var(--purple);
+}
+.hero h1 .highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 2px; left: 0; right: 0;
+  height: 6px;
+  background: var(--gold);
+  opacity: 0.4;
+  border-radius: 2px;
+  z-index: -1;
+  transform: skewX(-3deg);
+}
+
+.hero-sub {
+  font-size: 18px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 40px;
+  max-width: 480px;
+  font-weight: 400;
+}
+
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+
+.btn-main {
+  background: linear-gradient(135deg, var(--purple) 0%, var(--purple-mid) 100%);
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 16px 34px;
+  border-radius: 100px;
+  text-decoration: none;
+  box-shadow: 0 8px 32px rgba(108,63,197,0.38);
+  transition: transform 0.15s, box-shadow 0.15s;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-main:hover { transform: translateY(-3px); box-shadow: 0 16px 48px rgba(108,63,197,0.45); }
+.btn-main .arrow { transition: transform 0.2s; }
+.btn-main:hover .arrow { transform: translateX(4px); }
+
+.btn-soft {
+  color: var(--purple);
+  font-weight: 500;
+  font-size: 15px;
+  text-decoration: none;
+  display: inline-flex; align-items: center; gap: 6px;
+  opacity: 0.85;
+  transition: opacity 0.15s;
+}
+.btn-soft:hover { opacity: 1; }
+
+.hero-social-proof {
+  display: flex; align-items: center; gap: 12px;
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+.avatar-stack { display: flex; }
+.avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 2px solid var(--bg);
+  margin-left: -10px;
+  font-size: 15px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--lavender);
+}
+.avatar:first-child { margin-left: 0; }
+.proof-text { font-size: 13px; color: var(--muted); line-height: 1.4; }
+.proof-text strong { color: var(--text); font-weight: 600; }
+
+/* ══ FLOATING CARDS (Hero right panel) ══ */
+.hero-visual {
+  position: relative;
+  z-index: 2;
+  height: 520px;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.floating-card {
+  position: absolute;
+  background: var(--card);
+  border-radius: 20px;
+  padding: 20px 24px;
+  box-shadow: 0 12px 48px rgba(26,5,51,0.12);
+  border: 1px solid var(--border);
+  animation: floatCard linear infinite;
+  max-width: 280px;
+  transform-origin: center;
+}
+
+.fc-1 { top: 10%; left: 5%; animation-duration: 7s; animation-delay: 0s; }
+.fc-2 { top: 5%; right: 0%; animation-duration: 9s; animation-delay: -2s; }
+.fc-3 { bottom: 28%; left: 0%; animation-duration: 8s; animation-delay: -4s; }
+.fc-4 { bottom: 8%; right: 4%; animation-duration: 6s; animation-delay: -1s; }
+.fc-5 { top: 42%; left: 28%; animation-duration: 10s; animation-delay: -3s;
+         box-shadow: 0 20px 64px rgba(108,63,197,0.22); border-color: var(--purple-mid); }
+
+@keyframes floatCard {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33%  { transform: translateY(-10px) rotate(0.6deg); }
+  66%  { transform: translateY(6px) rotate(-0.4deg); }
+}
+
+.fc-icon { font-size: 26px; margin-bottom: 10px; }
+.fc-title { font-family: var(--display); font-weight: 700; font-size: 14px; color: var(--text); margin-bottom: 6px; letter-spacing: -0.02em; }
+.fc-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+.fc-tag {
+  display: inline-block;
+  margin-top: 10px;
+  background: var(--lavender);
+  color: var(--purple);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 100px;
+}
+.fc-tag.gold { background: var(--gold-light); color: #8B5800; }
+.fc-tag.green { background: #E8F8ED; color: #1A6B3C; }
+
+/* ══ PAIN → RELIEF STRIP ══ */
+.pain-strip {
+  background: var(--purple-deep);
+  padding: 64px 56px;
+  overflow: hidden;
+  position: relative;
+}
+.pain-strip::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 60% 50%, rgba(139,92,246,0.25) 0%, transparent 60%);
+}
+.pain-inner { position: relative; max-width: 960px; margin: 0 auto; text-align: center; }
+.pain-eyebrow {
+  font-size: 12px; font-weight: 600; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 20px;
+}
+.pain-strip h2 {
+  font-family: var(--display);
+  font-size: clamp(28px, 3.5vw, 48px);
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 48px;
+}
+.pain-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+.pain-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 28px 22px;
+  text-align: left;
+  transition: background 0.2s, transform 0.2s;
+}
+.pain-card:hover { background: rgba(255,255,255,0.1); transform: translateY(-3px); }
+.pain-emoji { font-size: 28px; margin-bottom: 14px; }
+.pain-card p { font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.55; }
+.pain-card strong { color: #fff; font-weight: 600; }
+
+/* ══ SERVICES ══ */
+.services-section {
+  padding: 100px 56px;
+  background: var(--bg);
+}
+.section-header { text-align: center; margin-bottom: 64px; }
+.section-label {
+  display: inline-block;
+  background: var(--lavender);
+  color: var(--purple);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 100px;
+  margin-bottom: 18px;
+}
+.section-header h2 {
+  font-family: var(--display);
+  font-size: clamp(30px, 3.5vw, 50px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--purple-deep);
+  margin-bottom: 16px;
+}
+.section-header p {
+  font-size: 18px;
+  color: var(--muted);
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.svc-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 36px 32px;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.svc-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--purple), var(--gold));
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.svc-card:hover { transform: translateY(-6px); box-shadow: 0 24px 64px rgba(108,63,197,0.14); border-color: var(--purple-mid); }
+.svc-card:hover::before { opacity: 1; }
+
+.svc-icon-wrap {
+  width: 56px; height: 56px;
+  background: var(--lavender);
+  border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px;
+  margin-bottom: 22px;
+  transition: background 0.2s, transform 0.2s;
+}
+.svc-card:hover .svc-icon-wrap { background: var(--purple); transform: scale(1.05) rotate(-3deg); }
+.svc-name {
+  font-family: var(--display);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--purple-deep);
+  margin-bottom: 12px;
+}
+.svc-desc {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.65;
+  margin-bottom: 20px;
+}
+.svc-bullets { list-style: none; }
+.svc-bullets li {
+  font-size: 13px;
+  color: var(--purple);
+  font-weight: 500;
+  padding: 4px 0;
+  display: flex; align-items: center; gap: 8px;
+}
+.svc-bullets li::before {
+  content: '✓';
+  background: var(--lavender);
+  border-radius: 50%;
+  width: 18px; height: 18px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px;
+  flex-shrink: 0;
+}
+
+/* ══ HOW IT WORKS ══ */
+.how-section {
+  padding: 100px 56px;
+  background: var(--lavender);
+  position: relative;
+  overflow: hidden;
+}
+.how-section::before {
+  content: '';
+  position: absolute;
+  right: -200px; top: -200px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(108,63,197,0.15) 0%, transparent 60%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.how-inner { max-width: 860px; margin: 0 auto; }
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-top: 64px;
+  position: relative;
+}
+.steps::before {
+  content: '';
+  position: absolute;
+  top: 32px; left: 14%; right: 14%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--purple), var(--gold));
+  opacity: 0.3;
+  z-index: 0;
+}
+.step { text-align: center; position: relative; z-index: 1; }
+.step-num {
+  width: 64px; height: 64px;
+  background: linear-gradient(135deg, var(--purple), var(--purple-mid));
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 24px;
+  font-family: var(--display);
+  font-size: 26px;
+  font-weight: 800;
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(108,63,197,0.35);
+}
+.step h3 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: -0.02em;
+  color: var(--purple-deep);
+  margin-bottom: 10px;
+}
+.step p { font-size: 15px; color: var(--muted); line-height: 1.6; }
+
+/* ══ TESTIMONIALS ══ */
+.proof-section {
+  padding: 100px 56px;
+  background: var(--bg);
+}
+.proof-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  max-width: 1060px;
+  margin: 64px auto 0;
+}
+.proof-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 32px 28px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.proof-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(108,63,197,0.1); }
+.stars { font-size: 16px; margin-bottom: 16px; letter-spacing: 2px; }
+.proof-quote {
+  font-size: 16px;
+  color: var(--text);
+  line-height: 1.65;
+  margin-bottom: 24px;
+  font-style: italic;
+}
+.proof-author {
+  display: flex; align-items: center; gap: 12px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+.proof-avatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--lavender);
+  font-size: 20px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.proof-name { font-weight: 600; font-size: 14px; color: var(--text); }
+.proof-role { font-size: 12px; color: var(--muted); }
+
+/* ══ GUARANTEE ══ */
+.guarantee {
+  background: var(--gold-light);
+  border: 2px solid var(--gold);
+  border-radius: 24px;
+  padding: 48px 56px;
+  max-width: 780px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+}
+.guarantee-wrap { padding: 80px 56px; background: var(--bg); }
+.guarantee-icon { font-size: 52px; margin-bottom: 20px; }
+.guarantee h3 {
+  font-family: var(--display);
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--purple-deep);
+  margin-bottom: 14px;
+}
+.guarantee p {
+  font-size: 17px;
+  color: var(--muted);
+  line-height: 1.65;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* ══ CTA SECTION ══ */
+.cta-section {
+  background: linear-gradient(135deg, var(--purple-deep) 0%, #3B0F80 100%);
+  padding: 120px 56px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: -50%; left: 50%; transform: translateX(-50%);
+  width: 120%; height: 200%;
+  background: radial-gradient(ellipse at center top, rgba(139,92,246,0.4) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cta-section::after {
+  content: '';
+  position: absolute;
+  bottom: -30%; left: -10%;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(245,166,35,0.15) 0%, transparent 60%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.cta-inner { position: relative; z-index: 2; }
+.cta-label {
+  display: inline-block;
+  background: rgba(245,166,35,0.2);
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 7px 18px;
+  border-radius: 100px;
+  margin-bottom: 28px;
+  border: 1px solid rgba(245,166,35,0.35);
+}
+.cta-section h2 {
+  font-family: var(--display);
+  font-size: clamp(36px, 5vw, 68px);
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  margin-bottom: 22px;
+}
+.cta-section h2 em {
+  font-style: normal;
+  color: var(--gold);
+}
+.cta-section > .cta-inner > p {
+  font-size: 20px;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 48px;
+  max-width: 460px;
+  margin-left: auto; margin-right: auto;
+  line-height: 1.6;
+}
+.cta-box {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 24px;
+  padding: 48px 40px;
+  max-width: 540px;
+  margin: 0 auto;
+  backdrop-filter: blur(8px);
+}
+.cta-tagline {
+  font-size: 15px;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 28px;
+}
+.cta-contact-rows { display: flex; flex-direction: column; gap: 14px; margin-bottom: 32px; }
+.cta-row {
+  display: flex; align-items: center; gap: 14px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 16px 20px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 500;
+  transition: background 0.2s, transform 0.15s;
+}
+.cta-row:hover { background: rgba(255,255,255,0.14); transform: translateX(4px); }
+.cta-row-icon { font-size: 22px; }
+.cta-btn-big {
+  display: block;
+  background: var(--gold);
+  color: var(--purple-deep);
+  font-weight: 700;
+  font-size: 18px;
+  padding: 20px 36px;
+  border-radius: 100px;
+  text-decoration: none;
+  box-shadow: 0 8px 32px rgba(245,166,35,0.4);
+  transition: transform 0.15s, box-shadow 0.15s;
+  letter-spacing: -0.01em;
+}
+.cta-btn-big:hover { transform: translateY(-3px); box-shadow: 0 16px 48px rgba(245,166,35,0.55); }
+.cta-reassure {
+  margin-top: 18px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.45);
+}
+
+/* ══ FOOTER ══ */
+footer {
+  background: var(--purple-deep);
+  padding: 28px 56px;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+footer p { font-size: 13px; color: rgba(255,255,255,0.4); }
+footer a { color: rgba(255,255,255,0.55); text-decoration: none; }
+footer a:hover { color: var(--gold); }
+
+/* ══ SCROLL REVEAL ══ */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ══ RESPONSIVE ══ */
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; padding: 120px 28px 60px; }
+  .hero-visual { display: none; }
+  nav { padding: 16px 24px; }
+  .pain-strip, .services-section, .how-section, .proof-section, .cta-section { padding: 72px 28px; }
+  .guarantee-wrap { padding: 60px 24px; }
+  .guarantee { padding: 36px 28px; }
+  .steps { grid-template-columns: 1fr; gap: 32px; }
+  .steps::before { display: none; }
+  footer { padding: 24px 28px; flex-direction: column; text-align: center; }
+}
+@media (max-width: 600px) {
+  .hero h1 { letter-spacing: -0.03em; }
+  .hero-social-proof { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .cta-box { padding: 32px 20px; }
+}
+
+/* Prevent animation jank */
+@media (prefers-reduced-motion: reduce) {
+  .floating-card, .badge-dot { animation: none; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <div class="nav-brand">Dudu<span>.</span>Digital</div>
+  <a href="#contact" class="nav-pill">Let's Talk →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      Available for New Projects
+    </div>
+    <h1>Your business,<br><span class="highlight">finally digital</span><br>and working for you</h1>
+    <p class="hero-sub">
+      I turn frustrating, time-wasting business problems into smart, automated systems —
+      so you can focus on what you actually love doing.
+      No tech jargon. No confusion. Just results.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-main">Get a Free Consultation <span class="arrow">→</span></a>
+      <a href="#services" class="btn-soft">↓ See what I can do</a>
+    </div>
+    <div class="hero-social-proof">
+      <div class="avatar-stack">
+        <div class="avatar">👨‍⚕️</div>
+        <div class="avatar">👩‍💼</div>
+        <div class="avatar">🏥</div>
+        <div class="avatar">🏢</div>
+      </div>
+      <div class="proof-text">
+        Trusted by <strong>clinics, associations & businesses</strong><br>
+        across Israel who needed digital help that actually works
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Cards Visual -->
+  <div class="hero-visual">
+
+    <div class="floating-card fc-1">
+      <div class="fc-icon">😤</div>
+      <div class="fc-title">"I'm losing clients because I can't follow up fast enough"</div>
+      <div class="fc-tag">→ Automated in 48hrs</div>
+    </div>
+
+    <div class="floating-card fc-2">
+      <div class="fc-icon">🤯</div>
+      <div class="fc-title">"We have no website and social media is a mess"</div>
+      <div class="fc-tag gold">→ Live in 1 week</div>
+    </div>
+
+    <div class="floating-card fc-5">
+      <div class="fc-icon">✨</div>
+      <div class="fc-title">WhatsApp appointment bot, fully automated</div>
+      <div class="fc-desc">Reminds patients, handles confirmations, saves 3hrs a day</div>
+      <div class="fc-tag green">✓ Running in a real clinic</div>
+    </div>
+
+    <div class="floating-card fc-3">
+      <div class="fc-icon">📉</div>
+      <div class="fc-title">"My staff spends hours on tasks a computer could do"</div>
+      <div class="fc-tag">→ Automated & saved</div>
+    </div>
+
+    <div class="floating-card fc-4">
+      <div class="fc-icon">🎯</div>
+      <div class="fc-title">Lead page built, launched, collecting contacts</div>
+      <div class="fc-desc">For a medical device brand — zero ad spend wasted</div>
+      <div class="fc-tag gold">✓ Deployed & live</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PAIN STRIP -->
+<div class="pain-strip">
+  <div class="pain-inner">
+    <div class="pain-eyebrow">Sound familiar?</div>
+    <h2>If any of this sounds like you,<br>you're in the right place</h2>
+    <div class="pain-cards">
+      <div class="pain-card">
+        <div class="pain-emoji">⏰</div>
+        <p><strong>You're drowning in repetitive tasks</strong> that eat your day — scheduling, follow-ups, data entry — all things a machine could handle.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-emoji">😰</div>
+        <p><strong>You know you need a better online presence</strong> but every agency wants months and a budget that hurts.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-emoji">📵</div>
+        <p><strong>Your competitors are using digital tools</strong> and you feel like you're falling behind without knowing where to start.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-emoji">🤷</div>
+        <p><strong>You've tried tech solutions before</strong> that sounded great but nobody explained how to actually use them.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services-section" id="services">
+  <div class="section-header reveal">
+    <div class="section-label">What I Do</div>
+    <h2>Real solutions for real problems.<br>No fluff, no jargon.</h2>
+    <p>Here's how I can transform the way your business runs — explained in plain language.</p>
+  </div>
+  <div class="services-grid">
+
+    <div class="svc-card reveal reveal-delay-1">
+      <div class="svc-icon-wrap">🤖</div>
+      <div class="svc-name">Automate Your Repetitive Work</div>
+      <p class="svc-desc">Imagine if your business could send reminders, follow up with leads, and update your records — all while you sleep. That's what automation does.</p>
+      <ul class="svc-bullets">
+        <li>WhatsApp appointment reminders</li>
+        <li>Automatic lead follow-ups</li>
+        <li>Data sync between your apps</li>
+      </ul>
+    </div>
+
+    <div class="svc-card reveal reveal-delay-2">
+      <div class="svc-icon-wrap">🌐</div>
+      <div class="svc-name">Websites & Landing Pages That Convert</div>
+      <p class="svc-desc">A page that actually brings you customers — not just a digital brochure that nobody reads. Fast, beautiful, and built to collect leads.</p>
+      <ul class="svc-bullets">
+        <li>Professional, mobile-ready design</li>
+        <li>Lead collection & contact forms</li>
+        <li>Live in days, not months</li>
+      </ul>
+    </div>
+
+    <div class="svc-card reveal reveal-delay-3">
+      <div class="svc-icon-wrap">🏥</div>
+      <div class="svc-name">Digital Tools for Medical Practices</div>
+      <p class="svc-desc">Built by someone with deep knowledge of how clinics and medical environments actually operate. Patient privacy. Compliance. Real-world workflows.</p>
+      <ul class="svc-bullets">
+        <li>Clinic management apps</li>
+        <li>Patient communication systems</li>
+        <li>Compliant data handling</li>
+      </ul>
+    </div>
+
+    <div class="svc-card reveal reveal-delay-1">
+      <div class="svc-icon-wrap">🧠</div>
+      <div class="svc-name">AI-Powered Assistants & Bots</div>
+      <p class="svc-desc">Put AI to work for your business — answering customer questions, qualifying leads, and handling tasks 24/7 without you lifting a finger.</p>
+      <ul class="svc-bullets">
+        <li>WhatsApp & chat bots</li>
+        <li>Smart document processing</li>
+        <li>Custom AI workflows</li>
+      </ul>
+    </div>
+
+    <div class="svc-card reveal reveal-delay-2">
+      <div class="svc-icon-wrap">📣</div>
+      <div class="svc-name">Marketing That Actually Works</div>
+      <p class="svc-desc">Full campaign packages — from the strategy to the final ad — in Hebrew and English. Brochures, banners, social content, and email campaigns.</p>
+      <ul class="svc-bullets">
+        <li>Bilingual campaigns (HE/EN)</li>
+        <li>Print & digital materials</li>
+        <li>Campaign strategy & copy</li>
+      </ul>
+    </div>
+
+    <div class="svc-card reveal reveal-delay-3">
+      <div class="svc-icon-wrap">🛡️</div>
+      <div class="svc-name">Technical Setup & Infrastructure</div>
+      <p class="svc-desc">Need your internal tools to talk to each other? Or a private, secure system that doesn't depend on expensive subscriptions? I build that.</p>
+      <ul class="svc-bullets">
+        <li>Secure self-hosted systems</li>
+        <li>App integrations & APIs</li>
+        <li>Ongoing support & maintenance</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how">
+  <div class="how-inner">
+    <div class="section-header reveal">
+      <div class="section-label">The Process</div>
+      <h2>Simple. Clear. No surprises.</h2>
+      <p>Getting started takes one conversation. Here's exactly what happens next.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal reveal-delay-1">
+        <div class="step-num">1</div>
+        <h3>We Talk</h3>
+        <p>Free, no-obligation call. You tell me what's frustrating you. I listen, ask questions, and we figure out the right solution together — in plain language.</p>
+      </div>
+      <div class="step reveal reveal-delay-2">
+        <div class="step-num">2</div>
+        <h3>I Build It</h3>
+        <p>I design and build your solution, keeping you updated at every step. No disappearing for weeks. No surprise invoices. Clear timelines, clear costs.</p>
+      </div>
+      <div class="step reveal reveal-delay-3">
+        <div class="step-num">3</div>
+        <h3>You Grow</h3>
+        <p>Your new system goes live. I walk you through everything. You save time, look professional, and wonder why you didn't do this sooner.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF -->
+<section class="proof-section" id="proof">
+  <div class="section-header reveal">
+    <div class="section-label">What People Say</div>
+    <h2>Results that speak for themselves</h2>
+    <p>From clinics to companies — here's what working together looks like.</p>
+  </div>
+  <div class="proof-grid">
+    <div class="proof-card reveal reveal-delay-1">
+      <div class="stars">⭐⭐⭐⭐⭐</div>
+      <p class="proof-quote">"We were spending 2 hours a day chasing appointment confirmations. Now it's completely automated. My staff can't believe how much time they've gotten back."</p>
+      <div class="proof-author">
+        <div class="proof-avatar">👩‍⚕️</div>
+        <div>
+          <div class="proof-name">Dr. Miriam K.</div>
+          <div class="proof-role">Clinic Director, Tel Aviv</div>
+        </div>
+      </div>
+    </div>
+    <div class="proof-card reveal reveal-delay-2">
+      <div class="stars">⭐⭐⭐⭐⭐</div>
+      <p class="proof-quote">"Our product launch needed a landing page and marketing materials in Hebrew and English — in under a week. Dudu delivered everything. The leads started coming in immediately."</p>
+      <div class="proof-author">
+        <div class="proof-avatar">🏢</div>
+        <div>
+          <div class="proof-name">Eran T.</div>
+          <div class="proof-role">CEO, Medical Device Company</div>
+        </div>
+      </div>
+    </div>
+    <div class="proof-card reveal reveal-delay-3">
+      <div class="stars">⭐⭐⭐⭐⭐</div>
+      <p class="proof-quote">"I'm not a tech person at all. But Dudu explained everything in a way I actually understood, built exactly what I needed, and was there whenever I had questions. Highly recommend."</p>
+      <div class="proof-author">
+        <div class="proof-avatar">👨‍💼</div>
+        <div>
+          <div class="proof-name">Avi S.</div>
+          <div class="proof-role">Clinic Owner, Holon</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GUARANTEE -->
+<div class="guarantee-wrap">
+  <div class="guarantee reveal">
+    <div class="guarantee-icon">🤝</div>
+    <h3>The Free First Conversation — No Strings Attached</h3>
+    <p>Not sure if this is right for you? Let's talk. A 30-minute call costs you nothing and gives you a clear picture of what's possible. Even if you don't move forward, you'll leave with useful ideas.</p>
+  </div>
+</div>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="cta-inner">
+    <div class="cta-label">✦ Ready? Let's Go</div>
+    <h2>Stop losing time.<br>Start growing <em>smarter.</em></h2>
+    <p>One conversation is all it takes to change how your business runs.</p>
+    <div class="cta-box">
+      <div class="cta-tagline">Reach out in whatever way feels easiest 👇</div>
+      <div class="cta-contact-rows">
+        <a href="mailto:dudu@drdudu.co.il" class="cta-row">
+          <span class="cta-row-icon">📧</span>
+          <span>dudu@drdudu.co.il</span>
+        </a>
+        <a href="https://wa.me/972" class="cta-row">
+          <span class="cta-row-icon">💬</span>
+          <span>Send a WhatsApp message</span>
+        </a>
+        <a href="https://drdudu.co.il" class="cta-row" target="_blank">
+          <span class="cta-row-icon">🌐</span>
+          <span>drdudu.co.il</span>
+        </a>
+      </div>
+      <a href="mailto:dudu@drdudu.co.il" class="cta-btn-big">Book My Free 30-Min Call →</a>
+      <p class="cta-reassure">No commitment. No tech talk. Just a friendly conversation.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Dudu Yagudayev Digital Services — Holon, Israel 🇮🇱</p>
+  <p>Hebrew & English &nbsp;·&nbsp; <a href="mailto:dudu@drdudu.co.il">dudu@drdudu.co.il</a></p>
+</footer>
+
+<script>
+// Nav scroll effect
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
