@@ -38,6 +38,28 @@ body {
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
+body[dir="rtl"] {
+  direction: rtl;
+}
+body[dir="rtl"] .hero h1,
+body[dir="rtl"] .section-header h2,
+body[dir="rtl"] .cta-section h2 {
+  letter-spacing: 0;
+}
+body[dir="rtl"] .hero-sub,
+body[dir="rtl"] .section-header p,
+body[dir="rtl"] .guarantee p,
+body[dir="rtl"] .cta-section > .cta-inner > p {
+  margin-left: auto;
+  margin-right: 0;
+}
+body[dir="rtl"] .pain-card,
+body[dir="rtl"] .svc-card,
+body[dir="rtl"] .floating-card {
+  text-align: right;
+}
+body[dir="rtl"] .btn-main:hover .arrow { transform: translateX(-4px); }
+body[dir="rtl"] .cta-row:hover { transform: translateX(-4px); }
 
 /* ══ NAV ══ */
 nav {
@@ -58,6 +80,40 @@ nav.scrolled { box-shadow: 0 4px 32px rgba(108,63,197,0.1); }
   letter-spacing: -0.03em;
 }
 .nav-brand span { color: var(--gold); }
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.language-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  box-shadow: 0 4px 18px rgba(26,5,51,0.06);
+}
+.lang-btn {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-family: var(--body);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  min-width: 42px;
+  padding: 9px 11px;
+  border-radius: 999px;
+  transition: background 0.15s, color 0.15s;
+}
+.lang-btn:hover,
+.lang-btn.active {
+  background: var(--lavender);
+  color: var(--purple);
+}
 .nav-pill {
   background: var(--gold);
   color: var(--purple-deep);
@@ -722,7 +778,9 @@ footer a:hover { color: var(--gold); }
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; padding: 120px 28px 60px; }
   .hero-visual { display: none; }
-  nav { padding: 16px 24px; }
+  nav { padding: 16px 24px; gap: 12px; }
+  .nav-actions { gap: 8px; }
+  .nav-pill { padding: 10px 16px; }
   .pain-strip, .services-section, .how-section, .proof-section, .cta-section { padding: 72px 28px; }
   .guarantee-wrap { padding: 60px 24px; }
   .guarantee { padding: 36px 28px; }
@@ -732,6 +790,8 @@ footer a:hover { color: var(--gold); }
 }
 @media (max-width: 600px) {
   .hero h1 { letter-spacing: -0.03em; }
+  nav { align-items: flex-start; flex-direction: column; }
+  .nav-actions { width: 100%; justify-content: space-between; }
   .hero-social-proof { flex-direction: column; align-items: flex-start; gap: 8px; }
   .cta-box { padding: 32px 20px; }
 }
@@ -748,26 +808,33 @@ footer a:hover { color: var(--gold); }
 <!-- NAV -->
 <nav id="mainNav">
   <div class="nav-brand">Dudu<span>.</span>Digital</div>
-  <a href="#contact" class="nav-pill">Let's Talk →</a>
+  <div class="nav-actions">
+    <div class="language-switcher" aria-label="Choose language">
+      <button class="lang-btn active" type="button" data-lang="en" aria-pressed="true">EN</button>
+      <button class="lang-btn" type="button" data-lang="he" aria-pressed="false">HE</button>
+      <button class="lang-btn" type="button" data-lang="ru" aria-pressed="false">RU</button>
+    </div>
+    <a href="#contact" class="nav-pill" data-i18n="nav.cta">Let's Talk →</a>
+  </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-text">
-    <img src="assets/dudu-digital-logo.jpg" alt="Dudu.Digital - Smart, Seamless Systems" class="hero-logo">
+    <img src="assets/dudu-digital-logo.jpg" alt="Dudu.Digital - Smart, Seamless Systems" class="hero-logo" data-i18n-attr="alt:hero.logoAlt">
     <div class="hero-badge">
       <span class="badge-dot"></span>
-      Available for New Projects
+      <span data-i18n="hero.badge">Available for New Projects</span>
     </div>
-    <h1>Your business,<br><span class="highlight">finally digital</span><br>and working for you</h1>
-    <p class="hero-sub">
+    <h1 data-i18n-html="hero.title">Your business,<br><span class="highlight">finally digital</span><br>and working for you</h1>
+    <p class="hero-sub" data-i18n="hero.sub">
       I turn frustrating, time-wasting business problems into smart, automated systems —
       so you can focus on what you actually love doing.
       No tech jargon. No confusion. Just results.
     </p>
     <div class="hero-actions">
-      <a href="#contact" class="btn-main">Get a Free Consultation <span class="arrow">→</span></a>
-      <a href="#services" class="btn-soft">↓ See what I can do</a>
+      <a href="#contact" class="btn-main"><span data-i18n="hero.primary">Get a Free Consultation</span> <span class="arrow">→</span></a>
+      <a href="#services" class="btn-soft" data-i18n="hero.secondary">↓ See what I can do</a>
     </div>
     <div class="hero-social-proof">
       <div class="avatar-stack">
@@ -777,8 +844,8 @@ footer a:hover { color: var(--gold); }
         <div class="avatar">🏢</div>
       </div>
       <div class="proof-text">
-        Trusted by <strong>clinics, associations & businesses</strong><br>
-        across Israel who needed digital help that actually works
+        <span data-i18n-html="hero.proof">Trusted by <strong>clinics, associations & businesses</strong><br>
+        across Israel who needed digital help that actually works</span>
       </div>
     </div>
   </div>
@@ -788,34 +855,34 @@ footer a:hover { color: var(--gold); }
 
     <div class="floating-card fc-1">
       <div class="fc-icon">😤</div>
-      <div class="fc-title">"I'm losing clients because I can't follow up fast enough"</div>
-      <div class="fc-tag">→ Automated in 48hrs</div>
+      <div class="fc-title" data-i18n="float.one.title">"I'm losing clients because I can't follow up fast enough"</div>
+      <div class="fc-tag" data-i18n="float.one.tag">→ Automated in 48hrs</div>
     </div>
 
     <div class="floating-card fc-2">
       <div class="fc-icon">🤯</div>
-      <div class="fc-title">"We have no website and social media is a mess"</div>
-      <div class="fc-tag gold">→ Live in 1 week</div>
+      <div class="fc-title" data-i18n="float.two.title">"We have no website and social media is a mess"</div>
+      <div class="fc-tag gold" data-i18n="float.two.tag">→ Live in 1 week</div>
     </div>
 
     <div class="floating-card fc-5">
       <div class="fc-icon">✨</div>
-      <div class="fc-title">WhatsApp appointment bot, fully automated</div>
-      <div class="fc-desc">Reminds patients, handles confirmations, saves 3hrs a day</div>
-      <div class="fc-tag green">✓ Running in a real clinic</div>
+      <div class="fc-title" data-i18n="float.three.title">WhatsApp appointment bot, fully automated</div>
+      <div class="fc-desc" data-i18n="float.three.desc">Reminds patients, handles confirmations, saves 3hrs a day</div>
+      <div class="fc-tag green" data-i18n="float.three.tag">✓ Running in a real clinic</div>
     </div>
 
     <div class="floating-card fc-3">
       <div class="fc-icon">📉</div>
-      <div class="fc-title">"My staff spends hours on tasks a computer could do"</div>
-      <div class="fc-tag">→ Automated & saved</div>
+      <div class="fc-title" data-i18n="float.four.title">"My staff spends hours on tasks a computer could do"</div>
+      <div class="fc-tag" data-i18n="float.four.tag">→ Automated & saved</div>
     </div>
 
     <div class="floating-card fc-4">
       <div class="fc-icon">🎯</div>
-      <div class="fc-title">Lead page built, launched, collecting contacts</div>
-      <div class="fc-desc">For a medical device brand — zero ad spend wasted</div>
-      <div class="fc-tag gold">✓ Deployed & live</div>
+      <div class="fc-title" data-i18n="float.five.title">Lead page built, launched, collecting contacts</div>
+      <div class="fc-desc" data-i18n="float.five.desc">For a medical device brand — zero ad spend wasted</div>
+      <div class="fc-tag gold" data-i18n="float.five.tag">✓ Deployed & live</div>
     </div>
 
   </div>
@@ -824,24 +891,24 @@ footer a:hover { color: var(--gold); }
 <!-- PAIN STRIP -->
 <div class="pain-strip">
   <div class="pain-inner">
-    <div class="pain-eyebrow">Sound familiar?</div>
-    <h2>If any of this sounds like you,<br>you're in the right place</h2>
+    <div class="pain-eyebrow" data-i18n="pain.label">Sound familiar?</div>
+    <h2 data-i18n-html="pain.title">If any of this sounds like you,<br>you're in the right place</h2>
     <div class="pain-cards">
       <div class="pain-card">
         <div class="pain-emoji">⏰</div>
-        <p><strong>You're drowning in repetitive tasks</strong> that eat your day — scheduling, follow-ups, data entry — all things a machine could handle.</p>
+        <p data-i18n-html="pain.one"><strong>You're drowning in repetitive tasks</strong> that eat your day — scheduling, follow-ups, data entry — all things a machine could handle.</p>
       </div>
       <div class="pain-card">
         <div class="pain-emoji">😰</div>
-        <p><strong>You know you need a better online presence</strong> but every agency wants months and a budget that hurts.</p>
+        <p data-i18n-html="pain.two"><strong>You know you need a better online presence</strong> but every agency wants months and a budget that hurts.</p>
       </div>
       <div class="pain-card">
         <div class="pain-emoji">📵</div>
-        <p><strong>Your competitors are using digital tools</strong> and you feel like you're falling behind without knowing where to start.</p>
+        <p data-i18n-html="pain.three"><strong>Your competitors are using digital tools</strong> and you feel like you're falling behind without knowing where to start.</p>
       </div>
       <div class="pain-card">
         <div class="pain-emoji">🤷</div>
-        <p><strong>You've tried tech solutions before</strong> that sounded great but nobody explained how to actually use them.</p>
+        <p data-i18n-html="pain.four"><strong>You've tried tech solutions before</strong> that sounded great but nobody explained how to actually use them.</p>
       </div>
     </div>
   </div>
@@ -850,75 +917,75 @@ footer a:hover { color: var(--gold); }
 <!-- SERVICES -->
 <section class="services-section" id="services">
   <div class="section-header reveal">
-    <div class="section-label">What I Do</div>
-    <h2>Real solutions for real problems.<br>No fluff, no jargon.</h2>
-    <p>Here's how I can transform the way your business runs — explained in plain language.</p>
+    <div class="section-label" data-i18n="services.label">What I Do</div>
+    <h2 data-i18n-html="services.title">Real solutions for real problems.<br>No fluff, no jargon.</h2>
+    <p data-i18n="services.sub">Here's how I can transform the way your business runs — explained in plain language.</p>
   </div>
   <div class="services-grid">
 
     <div class="svc-card reveal reveal-delay-1">
       <div class="svc-icon-wrap">🤖</div>
-      <div class="svc-name">Automate Your Repetitive Work</div>
-      <p class="svc-desc">Imagine if your business could send reminders, follow up with leads, and update your records — all while you sleep. That's what automation does.</p>
+      <div class="svc-name" data-i18n="service.one.title">Automate Your Repetitive Work</div>
+      <p class="svc-desc" data-i18n="service.one.desc">Imagine if your business could send reminders, follow up with leads, and update your records — all while you sleep. That's what automation does.</p>
       <ul class="svc-bullets">
-        <li>WhatsApp appointment reminders</li>
-        <li>Automatic lead follow-ups</li>
-        <li>Data sync between your apps</li>
+        <li data-i18n="service.one.b1">WhatsApp appointment reminders</li>
+        <li data-i18n="service.one.b2">Automatic lead follow-ups</li>
+        <li data-i18n="service.one.b3">Data sync between your apps</li>
       </ul>
     </div>
 
     <div class="svc-card reveal reveal-delay-2">
       <div class="svc-icon-wrap">🌐</div>
-      <div class="svc-name">Websites & Landing Pages That Convert</div>
-      <p class="svc-desc">A page that actually brings you customers — not just a digital brochure that nobody reads. Fast, beautiful, and built to collect leads.</p>
+      <div class="svc-name" data-i18n="service.two.title">Websites & Landing Pages That Convert</div>
+      <p class="svc-desc" data-i18n="service.two.desc">A page that actually brings you customers — not just a digital brochure that nobody reads. Fast, beautiful, and built to collect leads.</p>
       <ul class="svc-bullets">
-        <li>Professional, mobile-ready design</li>
-        <li>Lead collection & contact forms</li>
-        <li>Live in days, not months</li>
+        <li data-i18n="service.two.b1">Professional, mobile-ready design</li>
+        <li data-i18n="service.two.b2">Lead collection & contact forms</li>
+        <li data-i18n="service.two.b3">Live in days, not months</li>
       </ul>
     </div>
 
     <div class="svc-card reveal reveal-delay-3">
       <div class="svc-icon-wrap">🏥</div>
-      <div class="svc-name">Digital Tools for Medical Practices</div>
-      <p class="svc-desc">Built by someone with deep knowledge of how clinics and medical environments actually operate. Patient privacy. Compliance. Real-world workflows.</p>
+      <div class="svc-name" data-i18n="service.three.title">Digital Tools for Medical Practices</div>
+      <p class="svc-desc" data-i18n="service.three.desc">Built by someone with deep knowledge of how clinics and medical environments actually operate. Patient privacy. Compliance. Real-world workflows.</p>
       <ul class="svc-bullets">
-        <li>Clinic management apps</li>
-        <li>Patient communication systems</li>
-        <li>Compliant data handling</li>
+        <li data-i18n="service.three.b1">Clinic management apps</li>
+        <li data-i18n="service.three.b2">Patient communication systems</li>
+        <li data-i18n="service.three.b3">Compliant data handling</li>
       </ul>
     </div>
 
     <div class="svc-card reveal reveal-delay-1">
       <div class="svc-icon-wrap">🧠</div>
-      <div class="svc-name">AI-Powered Assistants & Bots</div>
-      <p class="svc-desc">Put AI to work for your business — answering customer questions, qualifying leads, and handling tasks 24/7 without you lifting a finger.</p>
+      <div class="svc-name" data-i18n="service.four.title">AI-Powered Assistants & Bots</div>
+      <p class="svc-desc" data-i18n="service.four.desc">Put AI to work for your business — answering customer questions, qualifying leads, and handling tasks 24/7 without you lifting a finger.</p>
       <ul class="svc-bullets">
-        <li>WhatsApp & chat bots</li>
-        <li>Smart document processing</li>
-        <li>Custom AI workflows</li>
+        <li data-i18n="service.four.b1">WhatsApp & chat bots</li>
+        <li data-i18n="service.four.b2">Smart document processing</li>
+        <li data-i18n="service.four.b3">Custom AI workflows</li>
       </ul>
     </div>
 
     <div class="svc-card reveal reveal-delay-2">
       <div class="svc-icon-wrap">📣</div>
-      <div class="svc-name">Marketing That Actually Works</div>
-      <p class="svc-desc">Full campaign packages — from the strategy to the final ad — in Hebrew and English. Brochures, banners, social content, and email campaigns.</p>
+      <div class="svc-name" data-i18n="service.five.title">Marketing That Actually Works</div>
+      <p class="svc-desc" data-i18n="service.five.desc">Full campaign packages — from the strategy to the final ad — in Hebrew and English. Brochures, banners, social content, and email campaigns.</p>
       <ul class="svc-bullets">
-        <li>Bilingual campaigns (HE/EN)</li>
-        <li>Print & digital materials</li>
-        <li>Campaign strategy & copy</li>
+        <li data-i18n="service.five.b1">Bilingual campaigns (HE/EN)</li>
+        <li data-i18n="service.five.b2">Print & digital materials</li>
+        <li data-i18n="service.five.b3">Campaign strategy & copy</li>
       </ul>
     </div>
 
     <div class="svc-card reveal reveal-delay-3">
       <div class="svc-icon-wrap">🛡️</div>
-      <div class="svc-name">Technical Setup & Infrastructure</div>
-      <p class="svc-desc">Need your internal tools to talk to each other? Or a private, secure system that doesn't depend on expensive subscriptions? I build that.</p>
+      <div class="svc-name" data-i18n="service.six.title">Technical Setup & Infrastructure</div>
+      <p class="svc-desc" data-i18n="service.six.desc">Need your internal tools to talk to each other? Or a private, secure system that doesn't depend on expensive subscriptions? I build that.</p>
       <ul class="svc-bullets">
-        <li>Secure self-hosted systems</li>
-        <li>App integrations & APIs</li>
-        <li>Ongoing support & maintenance</li>
+        <li data-i18n="service.six.b1">Secure self-hosted systems</li>
+        <li data-i18n="service.six.b2">App integrations & APIs</li>
+        <li data-i18n="service.six.b3">Ongoing support & maintenance</li>
       </ul>
     </div>
 
@@ -929,25 +996,25 @@ footer a:hover { color: var(--gold); }
 <section class="how-section" id="how">
   <div class="how-inner">
     <div class="section-header reveal">
-      <div class="section-label">The Process</div>
-      <h2>Simple. Clear. No surprises.</h2>
-      <p>Getting started takes one conversation. Here's exactly what happens next.</p>
+      <div class="section-label" data-i18n="process.label">The Process</div>
+      <h2 data-i18n="process.title">Simple. Clear. No surprises.</h2>
+      <p data-i18n="process.sub">Getting started takes one conversation. Here's exactly what happens next.</p>
     </div>
     <div class="steps">
       <div class="step reveal reveal-delay-1">
         <div class="step-num">1</div>
-        <h3>We Talk</h3>
-        <p>Free, no-obligation call. You tell me what's frustrating you. I listen, ask questions, and we figure out the right solution together — in plain language.</p>
+        <h3 data-i18n="process.one.title">We Talk</h3>
+        <p data-i18n="process.one.desc">Free, no-obligation call. You tell me what's frustrating you. I listen, ask questions, and we figure out the right solution together — in plain language.</p>
       </div>
       <div class="step reveal reveal-delay-2">
         <div class="step-num">2</div>
-        <h3>I Build It</h3>
-        <p>I design and build your solution, keeping you updated at every step. No disappearing for weeks. No surprise invoices. Clear timelines, clear costs.</p>
+        <h3 data-i18n="process.two.title">I Build It</h3>
+        <p data-i18n="process.two.desc">I design and build your solution, keeping you updated at every step. No disappearing for weeks. No surprise invoices. Clear timelines, clear costs.</p>
       </div>
       <div class="step reveal reveal-delay-3">
         <div class="step-num">3</div>
-        <h3>You Grow</h3>
-        <p>Your new system goes live. I walk you through everything. You save time, look professional, and wonder why you didn't do this sooner.</p>
+        <h3 data-i18n="process.three.title">You Grow</h3>
+        <p data-i18n="process.three.desc">Your new system goes live. I walk you through everything. You save time, look professional, and wonder why you didn't do this sooner.</p>
       </div>
     </div>
   </div>
@@ -956,41 +1023,41 @@ footer a:hover { color: var(--gold); }
 <!-- PROOF -->
 <section class="proof-section" id="proof">
   <div class="section-header reveal">
-    <div class="section-label">What People Say</div>
-    <h2>Results that speak for themselves</h2>
-    <p>From clinics to companies — here's what working together looks like.</p>
+    <div class="section-label" data-i18n="proof.label">What People Say</div>
+    <h2 data-i18n="proof.title">Results that speak for themselves</h2>
+    <p data-i18n="proof.sub">From clinics to companies — here's what working together looks like.</p>
   </div>
   <div class="proof-grid">
     <div class="proof-card reveal reveal-delay-1">
       <div class="stars">⭐⭐⭐⭐⭐</div>
-      <p class="proof-quote">"We were spending 2 hours a day chasing appointment confirmations. Now it's completely automated. My staff can't believe how much time they've gotten back."</p>
+      <p class="proof-quote" data-i18n="proof.one.quote">"We were spending 2 hours a day chasing appointment confirmations. Now it's completely automated. My staff can't believe how much time they've gotten back."</p>
       <div class="proof-author">
         <div class="proof-avatar">👩‍⚕️</div>
         <div>
-          <div class="proof-name">Dr. Miriam K.</div>
-          <div class="proof-role">Clinic Director, Tel Aviv</div>
+          <div class="proof-name" data-i18n="proof.one.name">Dr. Miriam K.</div>
+          <div class="proof-role" data-i18n="proof.one.role">Clinic Director, Tel Aviv</div>
         </div>
       </div>
     </div>
     <div class="proof-card reveal reveal-delay-2">
       <div class="stars">⭐⭐⭐⭐⭐</div>
-      <p class="proof-quote">"Our product launch needed a landing page and marketing materials in Hebrew and English — in under a week. Dudu delivered everything. The leads started coming in immediately."</p>
+      <p class="proof-quote" data-i18n="proof.two.quote">"Our product launch needed a landing page and marketing materials in Hebrew and English — in under a week. Dudu delivered everything. The leads started coming in immediately."</p>
       <div class="proof-author">
         <div class="proof-avatar">🏢</div>
         <div>
-          <div class="proof-name">Eran T.</div>
-          <div class="proof-role">CEO, Medical Device Company</div>
+          <div class="proof-name" data-i18n="proof.two.name">Eran T.</div>
+          <div class="proof-role" data-i18n="proof.two.role">CEO, Medical Device Company</div>
         </div>
       </div>
     </div>
     <div class="proof-card reveal reveal-delay-3">
       <div class="stars">⭐⭐⭐⭐⭐</div>
-      <p class="proof-quote">"I'm not a tech person at all. But Dudu explained everything in a way I actually understood, built exactly what I needed, and was there whenever I had questions. Highly recommend."</p>
+      <p class="proof-quote" data-i18n="proof.three.quote">"I'm not a tech person at all. But Dudu explained everything in a way I actually understood, built exactly what I needed, and was there whenever I had questions. Highly recommend."</p>
       <div class="proof-author">
         <div class="proof-avatar">👨‍💼</div>
         <div>
-          <div class="proof-name">Avi S.</div>
-          <div class="proof-role">Clinic Owner, Holon</div>
+          <div class="proof-name" data-i18n="proof.three.name">Avi S.</div>
+          <div class="proof-role" data-i18n="proof.three.role">Clinic Owner, Holon</div>
         </div>
       </div>
     </div>
@@ -1001,28 +1068,28 @@ footer a:hover { color: var(--gold); }
 <div class="guarantee-wrap">
   <div class="guarantee reveal">
     <div class="guarantee-icon">🤝</div>
-    <h3>The Free First Conversation — No Strings Attached</h3>
-    <p>Not sure if this is right for you? Let's talk. A 30-minute call costs you nothing and gives you a clear picture of what's possible. Even if you don't move forward, you'll leave with useful ideas.</p>
+    <h3 data-i18n="guarantee.title">The Free First Conversation — No Strings Attached</h3>
+    <p data-i18n="guarantee.desc">Not sure if this is right for you? Let's talk. A 30-minute call costs you nothing and gives you a clear picture of what's possible. Even if you don't move forward, you'll leave with useful ideas.</p>
   </div>
 </div>
 
 <!-- CTA -->
 <section class="cta-section" id="contact">
   <div class="cta-inner">
-    <div class="cta-label">✦ Ready? Let's Go</div>
-    <h2>Stop losing time.<br>Start growing <em>smarter.</em></h2>
-    <p>One conversation is all it takes to change how your business runs.</p>
+    <div class="cta-label" data-i18n="cta.label">✦ Ready? Let's Go</div>
+    <h2 data-i18n-html="cta.title">Stop losing time.<br>Start growing <em>smarter.</em></h2>
+    <p data-i18n="cta.sub">One conversation is all it takes to change how your business runs.</p>
     <div class="cta-box">
-      <div class="cta-tagline">Reach out in whatever way feels easiest 👇</div>
+      <div class="cta-tagline" data-i18n="cta.tagline">Reach out in whatever way feels easiest 👇</div>
       <div class="cta-contact-rows">
-        <a href="mailto:duduyyy@msn.com" class="cta-row" aria-label="Email Dudu">
+        <a href="mailto:duduyyy@msn.com" class="cta-row" aria-label="Email Dudu" data-i18n-attr="aria-label:cta.emailAria">
           <span class="cta-row-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none">
               <path d="M4 6.5h16v11H4v-11Z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/>
               <path d="m4.8 7.2 7.2 6 7.2-6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </span>
-          <span>send an E-mail</span>
+          <span data-i18n="cta.email">send an E-mail</span>
         </a>
         <a href="https://wa.me/972528361844" class="cta-row">
           <span class="cta-row-icon" aria-hidden="true">
@@ -1030,19 +1097,19 @@ footer a:hover { color: var(--gold); }
               <path d="M16.01 3.2c-7.02 0-12.72 5.66-12.72 12.63 0 2.23.59 4.4 1.7 6.31L3.2 28.8l6.84-1.77a12.82 12.82 0 0 0 5.97 1.49c7.02 0 12.72-5.66 12.72-12.63S23.03 3.2 16.01 3.2Zm0 22.99c-1.86 0-3.68-.5-5.27-1.43l-.38-.23-4.06 1.05 1.08-3.93-.25-.4a10.23 10.23 0 0 1-1.53-5.42c0-5.69 4.67-10.32 10.41-10.32s10.41 4.63 10.41 10.32-4.67 10.36-10.41 10.36Zm5.7-7.75c-.31-.15-1.84-.9-2.13-1-.29-.1-.5-.15-.71.15-.21.31-.81 1-.99 1.2-.18.21-.36.23-.67.08-.31-.15-1.31-.48-2.49-1.53-.92-.82-1.54-1.83-1.72-2.14-.18-.31-.02-.48.14-.63.14-.14.31-.36.46-.54.15-.18.21-.31.31-.52.1-.21.05-.39-.03-.54-.08-.15-.71-1.7-.97-2.33-.25-.61-.51-.53-.71-.54h-.61c-.21 0-.54.08-.83.39-.29.31-1.09 1.06-1.09 2.58s1.12 3 1.27 3.2c.15.21 2.2 3.34 5.33 4.68.74.32 1.32.51 1.77.66.74.23 1.42.2 1.96.12.6-.09 1.84-.75 2.1-1.47.26-.72.26-1.34.18-1.47-.08-.13-.29-.21-.6-.36Z"/>
             </svg>
           </span>
-          <span>Send a WhatsApp message</span>
+          <span data-i18n="cta.whatsapp">Send a WhatsApp message</span>
         </a>
       </div>
-      <a href="mailto:duduyyy@msn.com" class="cta-btn-big">Book My Free 30-Min Call →</a>
-      <p class="cta-reassure">No commitment. No tech talk. Just a friendly conversation.</p>
+      <a href="mailto:duduyyy@msn.com" class="cta-btn-big" data-i18n="cta.big">Book My Free 30-Min Call →</a>
+      <p class="cta-reassure" data-i18n="cta.reassure">No commitment. No tech talk. Just a friendly conversation.</p>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <p>© 2025 Dudu Jagudaev Digital Services — Holon, Israel 🇮🇱</p>
-  <p>Hebrew & English &nbsp;·&nbsp; <a href="mailto:duduyyy@msn.com" class="footer-icon" aria-label="Email Dudu">
+  <p data-i18n="footer.copy">© 2025 Dudu Jagudaev Digital Services — Holon, Israel 🇮🇱</p>
+  <p><span data-i18n="footer.langs">Hebrew, English & Russian</span> &nbsp;·&nbsp; <a href="mailto:duduyyy@msn.com" class="footer-icon" aria-label="Email Dudu" data-i18n-attr="aria-label:cta.emailAria">
     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
       <path d="M4 6.5h16v11H4v-11Z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/>
       <path d="m4.8 7.2 7.2 6 7.2-6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1051,6 +1118,343 @@ footer a:hover { color: var(--gold); }
 </footer>
 
 <script>
+const translations = {
+  en: {
+    metaTitle: 'Dudu Jagudaev — I Fix the Digital Side of Your Business',
+    direction: 'ltr',
+    'nav.cta': "Let's Talk →",
+    'hero.logoAlt': 'Dudu.Digital - Smart, Seamless Systems',
+    'hero.badge': 'Available for New Projects',
+    'hero.title': 'Your business,<br><span class="highlight">finally digital</span><br>and working for you',
+    'hero.sub': 'I turn frustrating, time-wasting business problems into smart, automated systems — so you can focus on what you actually love doing. No tech jargon. No confusion. Just results.',
+    'hero.primary': 'Get a Free Consultation',
+    'hero.secondary': '↓ See what I can do',
+    'hero.proof': 'Trusted by <strong>clinics, associations & businesses</strong><br>across Israel who needed digital help that actually works',
+    'float.one.title': '"I\'m losing clients because I can\'t follow up fast enough"',
+    'float.one.tag': '→ Automated in 48hrs',
+    'float.two.title': '"We have no website and social media is a mess"',
+    'float.two.tag': '→ Live in 1 week',
+    'float.three.title': 'WhatsApp appointment bot, fully automated',
+    'float.three.desc': 'Reminds patients, handles confirmations, saves 3hrs a day',
+    'float.three.tag': '✓ Running in a real clinic',
+    'float.four.title': '"My staff spends hours on tasks a computer could do"',
+    'float.four.tag': '→ Automated & saved',
+    'float.five.title': 'Lead page built, launched, collecting contacts',
+    'float.five.desc': 'For a medical device brand — zero ad spend wasted',
+    'float.five.tag': '✓ Deployed & live',
+    'pain.label': 'Sound familiar?',
+    'pain.title': "If any of this sounds like you,<br>you're in the right place",
+    'pain.one': "<strong>You're drowning in repetitive tasks</strong> that eat your day — scheduling, follow-ups, data entry — all things a machine could handle.",
+    'pain.two': '<strong>You know you need a better online presence</strong> but every agency wants months and a budget that hurts.',
+    'pain.three': "<strong>Your competitors are using digital tools</strong> and you feel like you're falling behind without knowing where to start.",
+    'pain.four': "<strong>You've tried tech solutions before</strong> that sounded great but nobody explained how to actually use them.",
+    'services.label': 'What I Do',
+    'services.title': 'Real solutions for real problems.<br>No fluff, no jargon.',
+    'services.sub': "Here's how I can transform the way your business runs — explained in plain language.",
+    'service.one.title': 'Automate Your Repetitive Work',
+    'service.one.desc': "Imagine if your business could send reminders, follow up with leads, and update your records — all while you sleep. That's what automation does.",
+    'service.one.b1': 'WhatsApp appointment reminders',
+    'service.one.b2': 'Automatic lead follow-ups',
+    'service.one.b3': 'Data sync between your apps',
+    'service.two.title': 'Websites & Landing Pages That Convert',
+    'service.two.desc': 'A page that actually brings you customers — not just a digital brochure that nobody reads. Fast, beautiful, and built to collect leads.',
+    'service.two.b1': 'Professional, mobile-ready design',
+    'service.two.b2': 'Lead collection & contact forms',
+    'service.two.b3': 'Live in days, not months',
+    'service.three.title': 'Digital Tools for Medical Practices',
+    'service.three.desc': 'Built by someone with deep knowledge of how clinics and medical environments actually operate. Patient privacy. Compliance. Real-world workflows.',
+    'service.three.b1': 'Clinic management apps',
+    'service.three.b2': 'Patient communication systems',
+    'service.three.b3': 'Compliant data handling',
+    'service.four.title': 'AI-Powered Assistants & Bots',
+    'service.four.desc': 'Put AI to work for your business — answering customer questions, qualifying leads, and handling tasks 24/7 without you lifting a finger.',
+    'service.four.b1': 'WhatsApp & chat bots',
+    'service.four.b2': 'Smart document processing',
+    'service.four.b3': 'Custom AI workflows',
+    'service.five.title': 'Marketing That Actually Works',
+    'service.five.desc': 'Full campaign packages — from the strategy to the final ad — in Hebrew, English and Russian. Brochures, banners, social content, and email campaigns.',
+    'service.five.b1': 'Multilingual campaigns',
+    'service.five.b2': 'Print & digital materials',
+    'service.five.b3': 'Campaign strategy & copy',
+    'service.six.title': 'Technical Setup & Infrastructure',
+    'service.six.desc': "Need your internal tools to talk to each other? Or a private, secure system that doesn't depend on expensive subscriptions? I build that.",
+    'service.six.b1': 'Secure self-hosted systems',
+    'service.six.b2': 'App integrations & APIs',
+    'service.six.b3': 'Ongoing support & maintenance',
+    'process.label': 'The Process',
+    'process.title': 'Simple. Clear. No surprises.',
+    'process.sub': "Getting started takes one conversation. Here's exactly what happens next.",
+    'process.one.title': 'We Talk',
+    'process.one.desc': "Free, no-obligation call. You tell me what's frustrating you. I listen, ask questions, and we figure out the right solution together — in plain language.",
+    'process.two.title': 'I Build It',
+    'process.two.desc': 'I design and build your solution, keeping you updated at every step. No disappearing for weeks. No surprise invoices. Clear timelines, clear costs.',
+    'process.three.title': 'You Grow',
+    'process.three.desc': "Your new system goes live. I walk you through everything. You save time, look professional, and wonder why you didn't do this sooner.",
+    'proof.label': 'What People Say',
+    'proof.title': 'Results that speak for themselves',
+    'proof.sub': "From clinics to companies — here's what working together looks like.",
+    'proof.one.quote': '"We were spending 2 hours a day chasing appointment confirmations. Now it\'s completely automated. My staff can\'t believe how much time they\'ve gotten back."',
+    'proof.one.name': 'Dr. Miriam K.',
+    'proof.one.role': 'Clinic Director, Tel Aviv',
+    'proof.two.quote': '"Our product launch needed a landing page and marketing materials in Hebrew and English — in under a week. Dudu delivered everything. The leads started coming in immediately."',
+    'proof.two.name': 'Eran T.',
+    'proof.two.role': 'CEO, Medical Device Company',
+    'proof.three.quote': '"I\'m not a tech person at all. But Dudu explained everything in a way I actually understood, built exactly what I needed, and was there whenever I had questions. Highly recommend."',
+    'proof.three.name': 'Avi S.',
+    'proof.three.role': 'Clinic Owner, Holon',
+    'guarantee.title': 'The Free First Conversation — No Strings Attached',
+    'guarantee.desc': "Not sure if this is right for you? Let's talk. A 30-minute call costs you nothing and gives you a clear picture of what's possible. Even if you don't move forward, you'll leave with useful ideas.",
+    'cta.label': "✦ Ready? Let's Go",
+    'cta.title': 'Stop losing time.<br>Start growing <em>smarter.</em>',
+    'cta.sub': 'One conversation is all it takes to change how your business runs.',
+    'cta.tagline': 'Reach out in whatever way feels easiest 👇',
+    'cta.emailAria': 'Email Dudu',
+    'cta.email': 'send an E-mail',
+    'cta.whatsapp': 'Send a WhatsApp message',
+    'cta.big': 'Book My Free 30-Min Call →',
+    'cta.reassure': 'No commitment. No tech talk. Just a friendly conversation.',
+    'footer.copy': '© 2025 Dudu Jagudaev Digital Services — Holon, Israel 🇮🇱',
+    'footer.langs': 'Hebrew, English & Russian'
+  },
+  he: {
+    metaTitle: 'דודו ג׳גודייב — פתרונות דיגיטליים לעסק',
+    direction: 'rtl',
+    'nav.cta': 'נדבר →',
+    'hero.logoAlt': 'Dudu.Digital - מערכות חכמות ופשוטות',
+    'hero.badge': 'זמין לפרויקטים חדשים',
+    'hero.title': 'העסק שלך,<br><span class="highlight">סוף סוף דיגיטלי</span><br>ועובד בשבילך',
+    'hero.sub': 'אני הופך בעיות עסקיות מתסכלות וגוזלות זמן למערכות חכמות ואוטומטיות, כדי שתוכל להתמקד במה שאתה באמת אוהב לעשות. בלי ז׳רגון טכני. בלי בלגן. רק תוצאות.',
+    'hero.primary': 'קבל ייעוץ ראשוני ללא עלות',
+    'hero.secondary': '↓ מה אני יכול לעשות',
+    'hero.proof': 'עסקים, מרפאות וארגונים בישראל <strong>סומכים על פתרונות דיגיטליים</strong><br>שבאמת עובדים',
+    'float.one.title': '״אני מאבד לקוחות כי אני לא מספיק לחזור אליהם בזמן״',
+    'float.one.tag': '→ אוטומציה תוך 48 שעות',
+    'float.two.title': '״אין לנו אתר והרשתות החברתיות מבולגנות״',
+    'float.two.tag': '→ באוויר תוך שבוע',
+    'float.three.title': 'בוט תורים ל-WhatsApp, אוטומטי לחלוטין',
+    'float.three.desc': 'מזכיר למטופלים, מטפל באישורים וחוסך 3 שעות ביום',
+    'float.three.tag': '✓ עובד במרפאה אמיתית',
+    'float.four.title': '״הצוות שלי מבזבז שעות על דברים שמחשב יכול לעשות״',
+    'float.four.tag': '→ אוטומציה וחיסכון בזמן',
+    'float.five.title': 'דף לידים שנבנה, עלה לאוויר ואוסף פניות',
+    'float.five.desc': 'עבור מותג בתחום הרפואי, בלי בזבוז תקציב פרסום',
+    'float.five.tag': '✓ פורסם ועובד',
+    'pain.label': 'נשמע מוכר?',
+    'pain.title': 'אם משהו מזה נשמע כמוך,<br>הגעת למקום הנכון',
+    'pain.one': '<strong>אתה טובע במשימות חוזרות</strong> שאוכלות לך את היום: תיאומים, מעקבים, הזנת נתונים וכל מה שמערכת יכולה לעשות לבד.',
+    'pain.two': '<strong>ברור לך שאתה צריך נוכחות דיגיטלית טובה יותר</strong>, אבל כל ספק מדבר על חודשים ותקציב כואב.',
+    'pain.three': '<strong>המתחרים שלך כבר משתמשים בכלים דיגיטליים</strong>, ואתה מרגיש שאתה נשאר מאחור בלי לדעת מאיפה להתחיל.',
+    'pain.four': '<strong>כבר ניסית פתרונות טכנולוגיים</strong> שנשמעו מצוין, אבל אף אחד לא הסביר איך באמת משתמשים בהם.',
+    'services.label': 'מה אני עושה',
+    'services.title': 'פתרונות אמיתיים לבעיות אמיתיות.<br>בלי רעש ובלי ז׳רגון.',
+    'services.sub': 'כך אפשר לשנות את הדרך שבה העסק שלך עובד, בשפה פשוטה וברורה.',
+    'service.one.title': 'אוטומציה למשימות חוזרות',
+    'service.one.desc': 'תאר לעצמך שהעסק שולח תזכורות, חוזר ללידים ומעדכן רשומות גם כשאתה ישן. זה הכוח של אוטומציה.',
+    'service.one.b1': 'תזכורות תורים ב-WhatsApp',
+    'service.one.b2': 'מעקב אוטומטי אחרי לידים',
+    'service.one.b3': 'סנכרון מידע בין אפליקציות',
+    'service.two.title': 'אתרים ודפי נחיתה שמביאים פניות',
+    'service.two.desc': 'עמוד שבאמת מביא לקוחות, לא רק ברושור דיגיטלי שאף אחד לא קורא. מהיר, יפה ובנוי לאיסוף לידים.',
+    'service.two.b1': 'עיצוב מקצועי ומותאם למובייל',
+    'service.two.b2': 'טפסי יצירת קשר ואיסוף לידים',
+    'service.two.b3': 'באוויר תוך ימים, לא חודשים',
+    'service.three.title': 'כלים דיגיטליים למרפאות',
+    'service.three.desc': 'נבנה על ידי מי שמכיר לעומק איך מרפאות וסביבות רפואיות באמת עובדות. פרטיות, סדר ותהליכי עבודה אמיתיים.',
+    'service.three.b1': 'אפליקציות לניהול מרפאה',
+    'service.three.b2': 'מערכות תקשורת עם מטופלים',
+    'service.three.b3': 'טיפול מסודר ומאובטח במידע',
+    'service.four.title': 'עוזרי AI ובוטים חכמים',
+    'service.four.desc': 'להכניס AI לעבודה: מענה לשאלות, סינון לידים וטיפול במשימות 24/7 בלי שתרים אצבע.',
+    'service.four.b1': 'בוטים ל-WhatsApp ולצ׳אט',
+    'service.four.b2': 'עיבוד מסמכים חכם',
+    'service.four.b3': 'תהליכי AI מותאמים אישית',
+    'service.five.title': 'שיווק שבאמת עובד',
+    'service.five.desc': 'חבילות קמפיין מלאות, מהאסטרטגיה ועד הקריאייטיב הסופי, בעברית, באנגלית וברוסית. ברושורים, באנרים, תוכן לרשתות וקמפיינים במייל.',
+    'service.five.b1': 'קמפיינים רב-לשוניים',
+    'service.five.b2': 'חומרים לדפוס ולדיגיטל',
+    'service.five.b3': 'אסטרטגיה וקופי לקמפיין',
+    'service.six.title': 'הקמה טכנית ותשתיות',
+    'service.six.desc': 'צריך שהכלים הפנימיים שלך ידברו אחד עם השני? או מערכת פרטית ומאובטחת שלא תלויה במנויים יקרים? אני בונה את זה.',
+    'service.six.b1': 'מערכות פרטיות ומאובטחות',
+    'service.six.b2': 'חיבורי אפליקציות ו-API',
+    'service.six.b3': 'תמיכה ותחזוקה שוטפת',
+    'process.label': 'התהליך',
+    'process.title': 'פשוט. ברור. בלי הפתעות.',
+    'process.sub': 'כדי להתחיל צריך שיחה אחת. זה בדיוק מה שקורה אחר כך.',
+    'process.one.title': 'מדברים',
+    'process.one.desc': 'שיחה ראשונית ללא התחייבות. אתה מספר מה מתסכל אותך, אני מקשיב, שואל שאלות, וביחד מבינים מה הפתרון הנכון בשפה פשוטה.',
+    'process.two.title': 'אני בונה',
+    'process.two.desc': 'אני מתכנן ובונה את הפתרון, ומעדכן אותך לאורך הדרך. בלי להיעלם לשבועות, בלי חשבוניות מפתיעות. לוחות זמנים ועלויות ברורים.',
+    'process.three.title': 'אתה מתקדם',
+    'process.three.desc': 'המערכת החדשה עולה לאוויר. אני מראה לך איך הכל עובד. אתה חוסך זמן, נראה מקצועי יותר, ומבין למה לא עשית את זה קודם.',
+    'proof.label': 'מה אומרים',
+    'proof.title': 'תוצאות שמדברות בעד עצמן',
+    'proof.sub': 'ממרפאות ועד חברות, כך נראית עבודה משותפת.',
+    'proof.one.quote': '״היינו מבזבזים שעתיים ביום על אישורי תורים. עכשיו זה אוטומטי לגמרי. הצוות לא מאמין כמה זמן התפנה לו.״',
+    'proof.one.name': 'ד״ר מרים ק.',
+    'proof.one.role': 'מנהלת מרפאה, תל אביב',
+    'proof.two.quote': '״השקת המוצר דרשה דף נחיתה וחומרים שיווקיים בעברית ובאנגלית בתוך פחות משבוע. דודו סיפק הכל, והלידים התחילו להגיע מיד.״',
+    'proof.two.name': 'ערן ט.',
+    'proof.two.role': 'מנכ״ל, חברת מכשור רפואי',
+    'proof.three.quote': '״אני לא אדם טכני בכלל. דודו הסביר הכל בצורה שהבנתי, בנה בדיוק את מה שהייתי צריך והיה זמין לכל שאלה. מומלץ מאוד.״',
+    'proof.three.name': 'אבי ס.',
+    'proof.three.role': 'בעל מרפאה, חולון',
+    'guarantee.title': 'שיחה ראשונה ללא עלות וללא התחייבות',
+    'guarantee.desc': 'לא בטוח אם זה מתאים לך? בוא נדבר. שיחה של 30 דקות לא עולה לך כלום ותיתן לך תמונה ברורה של מה אפשר לעשות. גם אם לא נתקדם, תצא עם רעיונות שימושיים.',
+    'cta.label': '✦ מוכן? מתחילים',
+    'cta.title': 'מפסיקים לאבד זמן.<br>מתחילים לצמוח <em>חכם יותר.</em>',
+    'cta.sub': 'שיחה אחת יכולה לשנות את הדרך שבה העסק שלך עובד.',
+    'cta.tagline': 'בחר את הדרך שהכי נוחה לך 👇',
+    'cta.emailAria': 'שליחת מייל לדודו',
+    'cta.email': 'שליחת E-mail',
+    'cta.whatsapp': 'שליחת הודעת WhatsApp',
+    'cta.big': 'לקביעת שיחת היכרות של 30 דקות →',
+    'cta.reassure': 'בלי התחייבות. בלי דיבור טכני. רק שיחה נעימה וברורה.',
+    'footer.copy': '© 2025 Dudu Jagudaev Digital Services — חולון, ישראל 🇮🇱',
+    'footer.langs': 'עברית, אנגלית ורוסית'
+  },
+  ru: {
+    metaTitle: 'Dudu Jagudaev — цифровые решения для бизнеса',
+    direction: 'ltr',
+    'nav.cta': 'Обсудить →',
+    'hero.logoAlt': 'Dudu.Digital - умные и удобные системы',
+    'hero.badge': 'Открыт для новых проектов',
+    'hero.title': 'Ваш бизнес,<br><span class="highlight">наконец-то цифровой</span><br>и работает на вас',
+    'hero.sub': 'Я превращаю сложные и отнимающие время бизнес-задачи в умные автоматизированные системы, чтобы вы могли заниматься тем, что действительно важно. Без технического жаргона. Без путаницы. Только результат.',
+    'hero.primary': 'Получить бесплатную консультацию',
+    'hero.secondary': '↓ Что я могу сделать',
+    'hero.proof': 'Мне доверяют <strong>клиники, ассоциации и бизнесы</strong><br>по всему Израилю, которым нужны цифровые решения, которые реально работают',
+    'float.one.title': '«Я теряю клиентов, потому что не успеваю отвечать быстро»',
+    'float.one.tag': '→ Автоматизация за 48 часов',
+    'float.two.title': '«У нас нет сайта, а соцсети в беспорядке»',
+    'float.two.tag': '→ Запуск за 1 неделю',
+    'float.three.title': 'WhatsApp-бот для записи, полностью автоматический',
+    'float.three.desc': 'Напоминает пациентам, обрабатывает подтверждения и экономит 3 часа в день',
+    'float.three.tag': '✓ Работает в реальной клинике',
+    'float.four.title': '«Команда тратит часы на задачи, которые может делать компьютер»',
+    'float.four.tag': '→ Автоматизировано и сэкономлено',
+    'float.five.title': 'Лендинг создан, запущен и собирает заявки',
+    'float.five.desc': 'Для бренда медицинского оборудования, без лишних расходов на рекламу',
+    'float.five.tag': '✓ Запущено и работает',
+    'pain.label': 'Знакомо?',
+    'pain.title': 'Если что-то из этого про вас,<br>вы в правильном месте',
+    'pain.one': '<strong>Вы тонете в повторяющихся задачах</strong>, которые съедают день: расписание, напоминания, ввод данных и все то, что может делать система.',
+    'pain.two': '<strong>Вы понимаете, что нужна сильная онлайн-презентация</strong>, но агентства говорят о месяцах работы и болезненном бюджете.',
+    'pain.three': '<strong>Конкуренты уже используют цифровые инструменты</strong>, а вы чувствуете, что отстаете и не знаете, с чего начать.',
+    'pain.four': '<strong>Вы уже пробовали технические решения</strong>, которые звучали хорошо, но никто не объяснил, как ими реально пользоваться.',
+    'services.label': 'Что я делаю',
+    'services.title': 'Реальные решения для реальных задач.<br>Без лишнего шума и жаргона.',
+    'services.sub': 'Вот как можно изменить работу вашего бизнеса простыми словами.',
+    'service.one.title': 'Автоматизация повторяющейся работы',
+    'service.one.desc': 'Представьте, что бизнес отправляет напоминания, возвращается к лидам и обновляет записи, пока вы спите. Это и есть автоматизация.',
+    'service.one.b1': 'Напоминания о встречах в WhatsApp',
+    'service.one.b2': 'Автоматические follow-up для лидов',
+    'service.one.b3': 'Синхронизация данных между приложениями',
+    'service.two.title': 'Сайты и лендинги, которые приводят клиентов',
+    'service.two.desc': 'Страница, которая действительно приносит заявки, а не просто цифровая брошюра. Быстро, красиво и с фокусом на лиды.',
+    'service.two.b1': 'Профессиональный дизайн для мобильных',
+    'service.two.b2': 'Формы контакта и сбор лидов',
+    'service.two.b3': 'Запуск за дни, не месяцы',
+    'service.three.title': 'Цифровые инструменты для медицинских практик',
+    'service.three.desc': 'Создано человеком, который понимает, как реально работают клиники и медицинская среда. Конфиденциальность, порядок и рабочие процессы.',
+    'service.three.b1': 'Приложения для управления клиникой',
+    'service.three.b2': 'Системы общения с пациентами',
+    'service.three.b3': 'Аккуратная и защищенная работа с данными',
+    'service.four.title': 'AI-ассистенты и боты',
+    'service.four.desc': 'AI может работать на ваш бизнес: отвечать на вопросы клиентов, квалифицировать лиды и выполнять задачи 24/7.',
+    'service.four.b1': 'Боты для WhatsApp и чата',
+    'service.four.b2': 'Умная обработка документов',
+    'service.four.b3': 'Индивидуальные AI-процессы',
+    'service.five.title': 'Маркетинг, который действительно работает',
+    'service.five.desc': 'Полные рекламные пакеты: от стратегии до финального креатива на иврите, английском и русском. Брошюры, баннеры, контент для соцсетей и email-кампании.',
+    'service.five.b1': 'Многоязычные кампании',
+    'service.five.b2': 'Материалы для печати и digital',
+    'service.five.b3': 'Стратегия и тексты кампании',
+    'service.six.title': 'Техническая настройка и инфраструктура',
+    'service.six.desc': 'Нужно, чтобы внутренние инструменты работали вместе? Или нужна частная безопасная система без дорогих подписок? Я это строю.',
+    'service.six.b1': 'Безопасные self-hosted системы',
+    'service.six.b2': 'Интеграции приложений и API',
+    'service.six.b3': 'Поддержка и обслуживание',
+    'process.label': 'Процесс',
+    'process.title': 'Просто. Понятно. Без сюрпризов.',
+    'process.sub': 'Для старта нужна одна беседа. Вот что происходит дальше.',
+    'process.one.title': 'Говорим',
+    'process.one.desc': 'Бесплатный звонок без обязательств. Вы рассказываете, что мешает работе, я слушаю, задаю вопросы и вместе мы находим правильное решение простым языком.',
+    'process.two.title': 'Я строю',
+    'process.two.desc': 'Я проектирую и создаю решение, держу вас в курсе на каждом этапе. Без исчезновения на недели и без неожиданных счетов. Понятные сроки и стоимость.',
+    'process.three.title': 'Вы растете',
+    'process.three.desc': 'Новая система запускается. Я показываю, как все работает. Вы экономите время, выглядите профессиональнее и понимаете, почему не сделали это раньше.',
+    'proof.label': 'Отзывы',
+    'proof.title': 'Результаты говорят сами за себя',
+    'proof.sub': 'От клиник до компаний, вот как выглядит совместная работа.',
+    'proof.one.quote': '«Мы тратили 2 часа в день на подтверждения приемов. Теперь это полностью автоматизировано. Команда не верит, сколько времени освободилось.»',
+    'proof.one.name': 'Д-р Мириам К.',
+    'proof.one.role': 'Директор клиники, Тель-Авив',
+    'proof.two.quote': '«Для запуска продукта нам нужен был лендинг и маркетинговые материалы на иврите и английском меньше чем за неделю. Дуду сделал все, и заявки пошли сразу.»',
+    'proof.two.name': 'Эран Т.',
+    'proof.two.role': 'CEO, компания медицинского оборудования',
+    'proof.three.quote': '«Я совсем не технический человек. Но Дуду объяснил все понятно, построил именно то, что было нужно, и был рядом с ответами на вопросы. Очень рекомендую.»',
+    'proof.three.name': 'Ави С.',
+    'proof.three.role': 'Владелец клиники, Холон',
+    'guarantee.title': 'Первая беседа бесплатно и без обязательств',
+    'guarantee.desc': 'Не уверены, подходит ли это вам? Давайте поговорим. 30-минутный звонок ничего не стоит и даст понятную картину возможностей. Даже если не продолжим, вы уйдете с полезными идеями.',
+    'cta.label': '✦ Готовы? Поехали',
+    'cta.title': 'Хватит терять время.<br>Начните расти <em>умнее.</em>',
+    'cta.sub': 'Одна беседа может изменить то, как работает ваш бизнес.',
+    'cta.tagline': 'Выберите самый удобный способ связи 👇',
+    'cta.emailAria': 'Написать Дуду по email',
+    'cta.email': 'send an E-mail',
+    'cta.whatsapp': 'Отправить сообщение в WhatsApp',
+    'cta.big': 'Записаться на бесплатный 30-минутный звонок →',
+    'cta.reassure': 'Без обязательств. Без технических сложностей. Просто дружеский разговор.',
+    'footer.copy': '© 2025 Dudu Jagudaev Digital Services — Холон, Израиль 🇮🇱',
+    'footer.langs': 'Иврит, английский и русский'
+  }
+};
+
+const languageButtons = document.querySelectorAll('.lang-btn');
+const savedLanguage = localStorage.getItem('duduDigitalLang');
+const browserLanguage = navigator.language && navigator.language.toLowerCase().startsWith('he') ? 'he' : 'en';
+const initialLanguage = translations[savedLanguage] ? savedLanguage : browserLanguage;
+
+function setLanguage(lang) {
+  const dictionary = translations[lang] || translations.en;
+  document.documentElement.lang = lang;
+  document.body.dir = dictionary.direction;
+  document.title = dictionary.metaTitle;
+
+  document.querySelectorAll('[data-i18n]').forEach((element) => {
+    const key = element.dataset.i18n;
+    if (dictionary[key]) element.textContent = dictionary[key];
+  });
+
+  document.querySelectorAll('[data-i18n-html]').forEach((element) => {
+    const key = element.dataset.i18nHtml;
+    if (dictionary[key]) element.innerHTML = dictionary[key];
+  });
+
+  document.querySelectorAll('[data-i18n-attr]').forEach((element) => {
+    element.dataset.i18nAttr.split(',').forEach((pair) => {
+      const [attribute, key] = pair.split(':').map((value) => value.trim());
+      if (attribute && dictionary[key]) element.setAttribute(attribute, dictionary[key]);
+    });
+  });
+
+  languageButtons.forEach((button) => {
+    const isActive = button.dataset.lang === lang;
+    button.classList.toggle('active', isActive);
+    button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+  });
+
+  localStorage.setItem('duduDigitalLang', lang);
+}
+
+languageButtons.forEach((button) => {
+  button.addEventListener('click', () => setLanguage(button.dataset.lang));
+});
+
+setLanguage(initialLanguage);
+
 // Nav scroll effect
 const nav = document.getElementById('mainNav');
 window.addEventListener('scroll', () => {
