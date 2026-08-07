@@ -641,7 +641,21 @@ nav.scrolled { box-shadow: 0 4px 32px rgba(108,63,197,0.1); }
   transition: background 0.2s, transform 0.15s;
 }
 .cta-row:hover { background: rgba(255,255,255,0.14); transform: translateX(4px); }
-.cta-row-icon { font-size: 22px; }
+.cta-row-icon {
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 22px;
+}
+.cta-row-icon svg,
+.footer-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
 .cta-btn-big {
   display: block;
   background: var(--gold);
@@ -673,6 +687,13 @@ footer {
 footer p { font-size: 13px; color: rgba(255,255,255,0.4); }
 footer a { color: rgba(255,255,255,0.55); text-decoration: none; }
 footer a:hover { color: var(--gold); }
+.footer-icon {
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
 
 /* ══ SCROLL REVEAL ══ */
 .reveal {
@@ -984,20 +1005,24 @@ footer a:hover { color: var(--gold); }
     <div class="cta-box">
       <div class="cta-tagline">Reach out in whatever way feels easiest 👇</div>
       <div class="cta-contact-rows">
-        <a href="mailto:dudu@drdudu.co.il" class="cta-row">
-          <span class="cta-row-icon">📧</span>
-          <span>dudu@drdudu.co.il</span>
+        <a href="mailto:duduyyy@msn.com" class="cta-row" aria-label="Email Dudu">
+          <span class="cta-row-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M4 6.5h16v11H4v-11Z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/>
+              <path d="m4.8 7.2 7.2 6 7.2-6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
         </a>
-        <a href="https://wa.me/972" class="cta-row">
-          <span class="cta-row-icon">💬</span>
+        <a href="https://wa.me/972528361844" class="cta-row">
+          <span class="cta-row-icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="currentColor">
+              <path d="M16.01 3.2c-7.02 0-12.72 5.66-12.72 12.63 0 2.23.59 4.4 1.7 6.31L3.2 28.8l6.84-1.77a12.82 12.82 0 0 0 5.97 1.49c7.02 0 12.72-5.66 12.72-12.63S23.03 3.2 16.01 3.2Zm0 22.99c-1.86 0-3.68-.5-5.27-1.43l-.38-.23-4.06 1.05 1.08-3.93-.25-.4a10.23 10.23 0 0 1-1.53-5.42c0-5.69 4.67-10.32 10.41-10.32s10.41 4.63 10.41 10.32-4.67 10.36-10.41 10.36Zm5.7-7.75c-.31-.15-1.84-.9-2.13-1-.29-.1-.5-.15-.71.15-.21.31-.81 1-.99 1.2-.18.21-.36.23-.67.08-.31-.15-1.31-.48-2.49-1.53-.92-.82-1.54-1.83-1.72-2.14-.18-.31-.02-.48.14-.63.14-.14.31-.36.46-.54.15-.18.21-.31.31-.52.1-.21.05-.39-.03-.54-.08-.15-.71-1.7-.97-2.33-.25-.61-.51-.53-.71-.54h-.61c-.21 0-.54.08-.83.39-.29.31-1.09 1.06-1.09 2.58s1.12 3 1.27 3.2c.15.21 2.2 3.34 5.33 4.68.74.32 1.32.51 1.77.66.74.23 1.42.2 1.96.12.6-.09 1.84-.75 2.1-1.47.26-.72.26-1.34.18-1.47-.08-.13-.29-.21-.6-.36Z"/>
+            </svg>
+          </span>
           <span>Send a WhatsApp message</span>
         </a>
-        <a href="https://drdudu.co.il" class="cta-row" target="_blank">
-          <span class="cta-row-icon">🌐</span>
-          <span>drdudu.co.il</span>
-        </a>
       </div>
-      <a href="mailto:dudu@drdudu.co.il" class="cta-btn-big">Book My Free 30-Min Call →</a>
+      <a href="mailto:duduyyy@msn.com" class="cta-btn-big">Book My Free 30-Min Call →</a>
       <p class="cta-reassure">No commitment. No tech talk. Just a friendly conversation.</p>
     </div>
   </div>
@@ -1005,8 +1030,13 @@ footer a:hover { color: var(--gold); }
 
 <!-- FOOTER -->
 <footer>
-  <p>© 2025 Dudu Yagudayev Digital Services — Holon, Israel 🇮🇱</p>
-  <p>Hebrew & English &nbsp;·&nbsp; <a href="mailto:dudu@drdudu.co.il">dudu@drdudu.co.il</a></p>
+  <p>© 2025 Dudu Jagudaev Digital Services — Holon, Israel 🇮🇱</p>
+  <p>Hebrew & English &nbsp;·&nbsp; <a href="mailto:duduyyy@msn.com" class="footer-icon" aria-label="Email Dudu">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M4 6.5h16v11H4v-11Z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/>
+      <path d="m4.8 7.2 7.2 6 7.2-6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a></p>
 </footer>
 
 <script>
